@@ -316,6 +316,30 @@ Ensure these files are included in `.gitignore`.
 
 ---
 
+## Accuracy Comparison
+
+![Accuracy Comparison](images/accuracy_comparison.png)
+
+---
+
+## Provider Win Percentage
+
+![Winner Pie Chart](images/winner_pie_chart.png)
+
+---
+
+## USDT Error Trend
+
+![USDT Error Trend](images/usdt_error_trend.png)
+
+---
+
+## USDC Error Trend
+
+![USDC Error Trend](images/usdc_error_trend.png)
+
+---
+
 # Disclaimer
 
 This project is intended for educational, monitoring, and analytical purposes only.
