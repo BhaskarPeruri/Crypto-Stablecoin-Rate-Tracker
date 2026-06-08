@@ -1,10 +1,13 @@
 # Dependencies
 node_modules/
 
-# Environment variables
-.env
+# Python
+venv/
+__pycache__/
+*.pyc
 
-# Google credentials
+# Environment variables & Secrets
+.env
 credentials.json
 
 # Logs

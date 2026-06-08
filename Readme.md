@@ -1,72 +1,114 @@
-# Crypto Stablecoin Rate Tracker
+# Crypto Stablecoin Rate Tracker & Analytics
 
-A Node.js application that fetches real-time **USDT** and **USDC** exchange rates from multiple providers and stores the results in a Google Sheet for comparison, monitoring, and historical analysis.
-
----
-
-## 🚀 Features
-
-* Fetches **USDT → INR** and **USDC → INR** exchange rates from:
-
-  * CoinGecko
-  * LiveCoinWatch
-  * CoinMarketCap
-* Automatically appends fetched data to Google Sheets
-* Compares pricing across multiple providers
-* Tracks stablecoin price discrepancies
-* Supports historical analysis and reporting
-* Simple Node.js implementation with Google Sheets integration
+A Node.js and Python-based application that fetches real-time **USDT** and **USDC** exchange rates from multiple providers, stores the results in Google Sheets, and generates visual analytics to determine which free provider most closely matches CoinMarketCap pricing.
 
 ---
 
-## 📊 Data Sources
+# 🚀 Features
 
-### CoinGecko
+## Data Collection
+
+Fetches **USDT → INR** and **USDC → INR** rates from:
+
+* CoinGecko
+* LiveCoinWatch
+* CoinMarketCap
+
+Stores all collected data in Google Sheets for historical tracking and analysis.
+
+## Analytics Dashboard
+
+Generates visual reports directly from Google Sheets data:
+
+* Provider Accuracy Comparison
+* CoinGecko vs LiveCoinWatch Performance
+* USDT Error Trend Analysis
+* USDC Error Trend Analysis
+* Provider Win Percentage Analysis
+
+## Historical Tracking
+
+Tracks:
+
+* Stablecoin prices over time
+* Provider deviations
+* Pricing consistency
+* Accuracy against CoinMarketCap
+
+---
+
+# 📊 Data Sources
+
+## CoinGecko
 
 * USDT → INR
 * USDC → INR
 
-### LiveCoinWatch
+## LiveCoinWatch
 
 * USDT → INR
 * USDC → INR
 
-### CoinMarketCap
+## CoinMarketCap
 
 * USDT → INR
 * USDC → INR
 
 ---
 
-## 📈 Metrics Tracked
+# 📈 Metrics Tracked
 
 Each execution stores the following information in Google Sheets:
 
-| Field                                     | Description                   |
-| ----------------------------------------- | ----------------------------- |
-| Date                                      | Execution date                |
-| Time                                      | Execution time                |
-| Attempt Number                            | Current run count             |
-| CoinGecko USDT/INR                        | USDT price from CoinGecko     |
-| CoinGecko USDC/INR                        | USDC price from CoinGecko     |
-| LiveCoinWatch USDT/INR                    | USDT price from LiveCoinWatch |
-| LiveCoinWatch USDC/INR                    | USDC price from LiveCoinWatch |
-| CoinMarketCap USDT/INR                    | USDT price from CoinMarketCap |
-| CoinMarketCap USDC/INR                    | USDC price from CoinMarketCap |
-| CoinGecko vs LiveCoinWatch Difference     | Price variance                |
-| CoinGecko vs CoinMarketCap Difference     | Price variance                |
-| LiveCoinWatch vs CoinMarketCap Difference | Price variance                |
-| Status                                    | Success / Failure             |
-| Notes                                     | Additional information        |
+| Field                  | Description                    |
+| ---------------------- | ------------------------------ |
+| Date                   | Execution Date                 |
+| Time                   | Execution Time                 |
+| Attempt Number         | Current Run Count              |
+| CoinGecko USDT→INR     | CoinGecko Price                |
+| CoinGecko USDC→INR     | CoinGecko Price                |
+| LiveCoinWatch USDT→INR | LiveCoinWatch Price            |
+| LiveCoinWatch USDC→INR | LiveCoinWatch Price            |
+| CoinMarketCap USDT→INR | CoinMarketCap Price            |
+| CoinMarketCap USDC→INR | CoinMarketCap Price            |
+| CG-LCW USDT Diff       | CoinGecko vs LiveCoinWatch     |
+| CG-CMC USDT Diff       | CoinGecko vs CoinMarketCap     |
+| LCW-CMC USDT Diff      | LiveCoinWatch vs CoinMarketCap |
+| CG-LCW USDC Diff       | CoinGecko vs LiveCoinWatch     |
+| CG-CMC USDC Diff       | CoinGecko vs CoinMarketCap     |
+| LCW-CMC USDC Diff      | LiveCoinWatch vs CoinMarketCap |
+| Status                 | Success / Failure              |
 
 ---
 
-## 🛠 Installation
+# 🏗 Project Structure
 
-### Clone the Repository
+```text
+.
+├── index.js
+├── sheet.js
+├── analyze.py
+├── credentials.json
+├── .env
+├── package.json
+├── README.md
+├── node_modules/
+└── venv/
+```
 
+---
 
-### Install Dependencies
+# 🛠 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/BhaskarPeruri/Crypto-Stablecoin-Rate-Tracker
+
+cd Currency_Rates
+```
+
+## Install Node.js Dependencies
 
 ```bash
 npm install
@@ -74,9 +116,9 @@ npm install
 
 ---
 
-## 🔐 Environment Variables
+# 🔐 Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file:
 
 ```env
 LIVECOINWATCH_API_KEY=YOUR_LIVECOINWATCH_API_KEY
@@ -85,88 +127,197 @@ COINMARKETCAP_API_KEY=YOUR_COINMARKETCAP_API_KEY
 
 ---
 
-## 📄 Google Sheets Setup
+# 📄 Google Sheets Setup
 
-### 1. Create a Google Cloud Project
+## 1. Create Google Cloud Project
 
-* Go to Google Cloud Console.
-* Create a new project.
+Create a project in Google Cloud Console.
 
-### 2. Enable Google Sheets API
+## 2. Enable Google Sheets API
 
-* Navigate to APIs & Services.
-* Enable the Google Sheets API.
+Enable:
 
-### 3. Create a Service Account
+* Google Sheets API
 
-* Create a Service Account under IAM & Admin.
-* Generate a JSON key.
+## 3. Create Service Account
 
-### 4. Add Credentials
+Generate a Service Account JSON key.
 
-Save the downloaded JSON key file in the project root:
+## 4. Save Credentials
+
+Place the downloaded file in the project root:
 
 ```text
 credentials.json
 ```
 
-### 5. Share the Spreadsheet
+## 5. Share Spreadsheet
 
-Share your Google Sheet with the Service Account email address and grant **Editor** access.
+Grant Editor access to the Service Account email address.
 
 ---
 
-## ▶️ Run the Application
+# ▶️ Running Data Collection
+
+Execute:
 
 ```bash
 node index.js
 ```
 
+This will:
+
+* Fetch CoinGecko data
+* Fetch LiveCoinWatch data
+* Fetch CoinMarketCap data
+* Calculate differences
+* Append a new row to Google Sheets
+
 ---
 
-## 📋 Example Response
+# 📊 Analytics Setup
 
-```json
-{
-  "usdtInr": 95.46,
-  "usdcInr": 95.57
-}
+## Create Python Virtual Environment
+
+```bash
+python3 -m venv venv
 ```
 
-After execution, a new row is automatically appended to the configured Google Sheet.
+## Activate Virtual Environment
+
+macOS / Linux:
+
+```bash
+source venv/bin/activate
+```
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+You should see:
+
+```bash
+(venv)
+```
+
+in your terminal.
 
 ---
 
-## 🔒 Security
+## Install Analytics Dependencies
 
-Never commit the following files to GitHub:
-
-* `.env`
-* `credentials.json`
-
-These files contain sensitive API keys and Google Service Account credentials.
-
-Before making the repository public, verify that:
-
-* No API keys are hardcoded.
-* `.env` is listed in `.gitignore`.
-* `credentials.json` is listed in `.gitignore`.
-* Sensitive files have never been committed to Git history.
+```bash
+pip install pandas matplotlib gspread google-auth
+```
 
 ---
 
-## 📌 Use Cases
+# 📈 Generate Analytics Reports
+
+Run:
+
+```bash
+python3 analyze.py
+```
+
+The script automatically:
+
+* Reads historical data from Google Sheets
+* Calculates average provider error
+* Compares providers against CoinMarketCap
+* Generates visualization charts
+
+---
+
+# 📁 Generated Reports
+
+The analytics script creates:
+
+```text
+accuracy_comparison.png
+winner_pie_chart.png
+usdt_error_trend.png
+usdc_error_trend.png
+```
+
+## accuracy_comparison.png
+
+Shows average absolute error against CoinMarketCap.
+
+Lower value = More accurate provider.
+
+## winner_pie_chart.png
+
+Shows how often each provider was closer to CoinMarketCap.
+
+## usdt_error_trend.png
+
+USDT accuracy trend over time.
+
+## usdc_error_trend.png
+
+USDC accuracy trend over time.
+
+---
+
+# 🛑 Exit Virtual Environment
+
+When finished:
+
+```bash
+deactivate
+```
+
+---
+
+# 🔄 Future Usage
+
+Whenever new rows are added to Google Sheets:
+
+```bash
+cd Currency_Rates
+
+source venv/bin/activate
+
+python3 analyze.py
+```
+
+The latest Google Sheet data will automatically be fetched and all charts regenerated.
+
+---
+
+# 🔒 Security
+
+Never commit:
+
+```text
+.env
+credentials.json
+node_modules/
+venv/
+```
+
+Ensure these files are included in `.gitignore`.
+
+---
+
+# 📌 Use Cases
 
 * Stablecoin price monitoring
-* Arbitrage opportunity tracking
-* INR conversion benchmarking
-* Historical stablecoin pricing analysis
-* Comparing exchange-rate providers
+* Provider accuracy benchmarking
+* CoinGecko vs LiveCoinWatch comparison
+* CoinMarketCap validation
+* Historical price analysis
+* Analytics and reporting
+* Arbitrage opportunity monitoring
 
 ---
 
+# Disclaimer
 
+This project is intended for educational, monitoring, and analytical purposes only.
 
-## Disclaimer
-
-This project is intended for educational and monitoring purposes only. Exchange rates may vary across providers and should not be considered financial advice. Always verify pricing directly from official sources before making trading or investment decisions.
+Exchange rates may differ across providers and should not be considered financial advice. Always verify rates directly from official sources before making trading or investment decisions.

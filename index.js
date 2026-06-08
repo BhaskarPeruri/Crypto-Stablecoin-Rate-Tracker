@@ -13,6 +13,7 @@ async function fetchCoinGecko() {
           vs_currencies: "inr",
         },
       },
+
     );
 
     return {
